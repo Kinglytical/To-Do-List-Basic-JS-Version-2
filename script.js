@@ -1,17 +1,16 @@
-const buttonlist = document.querySelector('#button');
+const buttonList = document.querySelector('#button');
 const toDoList = document.querySelector('#todo_list');
 
-function addTask() {
-    const li = document.createElement('li');
-    const value = document.querySelector('.input').value;
-    const text = document.createTextNode(value);
-    li.appendChild(text);
+buttonList.addEventListener('click', () => {
+    const paragraph = document.createElement('p');
+    const deleteButton = document.createElement('button');
+    const inputValue = document.querySelector('.input').value;
 
-    if (value === '') {
-        alert('please enter a task');
-    } else {
-        toDoList.appendChild(li);
-    }
-}
-
-buttonlist.addEventListener('click', addTask);
+    paragraph.textContent = inputValue;
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+        toDoList.removeChild(paragraph);
+    });
+    paragraph.appendChild(deleteButton);
+    toDoList.appendChild(paragraph);
+});
